@@ -1,0 +1,741 @@
+# zig-astdump
+A utility which prints the ast of a zig source file as json.
+
+# Quickstart
+```bash
+zig build run -- --input src/AstEmitter.zig --pretty
+```
+```json
+{
+    "decls": [
+        {
+            "tag": "var_decl",
+            "name": "AstEmitter",
+            "mut": "const",
+            "visib": null,
+            "type": null,
+            "init": {
+                "tag": "builtin_call",
+                "fn": "@This",
+                "params": []
+            }
+        },
+        {
+            "tag": "container_field",
+            "name": "ast",
+            "type": {
+                "tag": "ptr_type",
+                "const": true,
+                "child_type": {
+                    "tag": "identifier",
+                    "name": "Ast"
+                }
+            },
+            "value": null
+        },
+        {
+            "tag": "container_field",
+            "name": "str",
+            "type": {
+                "tag": "ptr_type",
+                "const": false,
+                "child_type": {
+                    "tag": "identifier",
+                    "name": "Stringify"
+                }
+            },
+            "value": null
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emit",
+            "visib": "pub",
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitToken",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "maybe_token",
+                    "type": {
+                        "tag": "optional_type",
+                        "expr": {
+                            "tag": "identifier",
+                            "name": "TokenIndex"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitOptionalIndex",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "optional_index",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "OptionalIndex",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "Node"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitMaybeIndex",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "maybe_index",
+                    "type": {
+                        "tag": "optional_type",
+                        "expr": {
+                            "tag": "field_access",
+                            "field": "Index",
+                            "type": {
+                                "tag": "identifier",
+                                "name": "Node"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitNode",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "node",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "Index",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "Node"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitGroupedExpression",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "node",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "Index",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "Node"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitIdentifier",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "node",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "Index",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "Node"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitNumberLiteral",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "node",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "Index",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "Node"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitStringLiteral",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "node",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "Index",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "Node"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitEnumLiteral",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "node",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "Index",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "Node"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitUnaryExpr",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "node",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "Index",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "Node"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitBinaryExpr",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "node",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "Index",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "Node"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitFieldAccess",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "node",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "Index",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "Node"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitBuiltinCall",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "node",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "Index",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "Node"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitPtrType",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "ptr_type",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "PtrType",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "full"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitFnProto",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "fn_proto",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "FnProto",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "full"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitVarDecl",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "var_decl",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "VarDecl",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "full"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitContainerDecl",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "container_decl",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "ContainerDecl",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "full"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitContainerField",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "container_field",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "ContainerField",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "full"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "fn_proto",
+            "name": "emitCall",
+            "visib": null,
+            "params": [
+                {
+                    "name": "self",
+                    "type": {
+                        "tag": "ptr_type",
+                        "const": false,
+                        "child_type": {
+                            "tag": "identifier",
+                            "name": "AstEmitter"
+                        }
+                    }
+                },
+                {
+                    "name": "call",
+                    "type": {
+                        "tag": "field_access",
+                        "field": "Call",
+                        "type": {
+                            "tag": "identifier",
+                            "name": "full"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "tag": "var_decl",
+            "name": "std",
+            "mut": "const",
+            "visib": null,
+            "type": null,
+            "init": {
+                "tag": "builtin_call",
+                "fn": "@import",
+                "params": [
+                    {
+                        "tag": "string_literal",
+                        "value": "std"
+                    }
+                ]
+            }
+        },
+        {
+            "tag": "var_decl",
+            "name": "Allocator",
+            "mut": "const",
+            "visib": null,
+            "type": null,
+            "init": {
+                "tag": "field_access",
+                "field": "Allocator",
+                "type": {
+                    "tag": "field_access",
+                    "field": "mem",
+                    "type": {
+                        "tag": "identifier",
+                        "name": "std"
+                    }
+                }
+            }
+        },
+        {
+            "tag": "var_decl",
+            "name": "Stringify",
+            "mut": "const",
+            "visib": null,
+            "type": null,
+            "init": {
+                "tag": "field_access",
+                "field": "Stringify",
+                "type": {
+                    "tag": "field_access",
+                    "field": "json",
+                    "type": {
+                        "tag": "identifier",
+                        "name": "std"
+                    }
+                }
+            }
+        },
+        {
+            "tag": "var_decl",
+            "name": "Ast",
+            "mut": "const",
+            "visib": null,
+            "type": null,
+            "init": {
+                "tag": "field_access",
+                "field": "Ast",
+                "type": {
+                    "tag": "field_access",
+                    "field": "zig",
+                    "type": {
+                        "tag": "identifier",
+                        "name": "std"
+                    }
+                }
+            }
+        },
+        {
+            "tag": "var_decl",
+            "name": "TokenIndex",
+            "mut": "const",
+            "visib": null,
+            "type": null,
+            "init": {
+                "tag": "field_access",
+                "field": "TokenIndex",
+                "type": {
+                    "tag": "identifier",
+                    "name": "Ast"
+                }
+            }
+        },
+        {
+            "tag": "var_decl",
+            "name": "Node",
+            "mut": "const",
+            "visib": null,
+            "type": null,
+            "init": {
+                "tag": "field_access",
+                "field": "Node",
+                "type": {
+                    "tag": "identifier",
+                    "name": "Ast"
+                }
+            }
+        },
+        {
+            "tag": "var_decl",
+            "name": "full",
+            "mut": "const",
+            "visib": null,
+            "type": null,
+            "init": {
+                "tag": "field_access",
+                "field": "full",
+                "type": {
+                    "tag": "identifier",
+                    "name": "Ast"
+                }
+            }
+        }
+    ]
+}
+```
