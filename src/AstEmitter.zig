@@ -237,6 +237,9 @@ fn emitFnProto(self: *AstEmitter, fn_proto: full.FnProto) anyerror!void {
     try self.emitToken(fn_proto.name_token);
     try self.str.objectField("visib");
     try self.emitToken(fn_proto.visib_token);
+    try self.str.objectField("return");
+    try self.emitOptionalIndex(fn_proto.ast.return_type);
+
     try self.str.objectField("params");
     try self.str.beginArray();
     var it = fn_proto.iterate(self.ast);
