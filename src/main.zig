@@ -32,10 +32,10 @@ pub fn main() !void {
     const in_content = content: {
         var in_buffer: [4 * 1024]u8 = undefined;
         var in_reader = in_file.reader(&in_buffer);
-        const c = try in_reader.interface.allocRemaining(allocator, .unlimited);
-
-        defer allocator.free(c);
-        break :content try allocator.dupeZ(u8, c);
+        var buffer: std.ArrayList(u8) = .empty;
+        defer buffer.deinit(allocator);
+        try in_reader.interface.appendRemaining(allocator, &buffer, .unlimited);
+        break :content try buffer.toOwnedSliceSentinel(allocator, 0);
     };
     defer allocator.free(in_content);
 
